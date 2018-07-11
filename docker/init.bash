@@ -9,11 +9,11 @@ oldpwd=$(pwd)
 cd "${KOBOCAT_SRC_DIR}"
 
 echo 'Synchronizing database.'
-#python manage.py syncdb --noinput
+python manage.py syncdb --noinput
 
 echo 'Running migrations.'
 # python manage.py makemigrations
-#python manage.py migrate --noinput
+python manage.py migrate --noinput
 
 
 rm -f /etc/cron.d/clean_up_tmp
