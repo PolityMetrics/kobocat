@@ -16,6 +16,13 @@ RUN if ! diff "${KOBOCAT_TMP_DIR}/current_apt_requirements.txt" "${KOBOCAT_TMP_D
 # PyPI to editable Git
 RUN pip install --upgrade 'pip>=10,<11'
 
+# Install SSH for Azure Management
+ENV SSH_PASSWD "root:Docker!"
+RUN apt-get install -y --no-install-recommends dialog cron \
+        && apt-get install -y --no-install-recommends openssh-server \
+        && echo "$SSH_PASSWD" | chpasswd 
+
+
 # Install post-base-image `pip` additions/upgrades from `requirements/base.pip`, if modified.
 COPY ./requirements/ "${KOBOCAT_TMP_DIR}/current_requirements/"
 # FIXME: Replace this with the much simpler command `pip-sync ${KOBOCAT_TMP_DIR}/current_requirements/base.pip`.
@@ -60,4 +67,4 @@ RUN echo 'source /etc/profile' >> /root/.bashrc
 
 WORKDIR "${KOBOCAT_SRC_DIR}"
 
-EXPOSE 8000
+EXPOSE 8000 2222
