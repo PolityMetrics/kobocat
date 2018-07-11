@@ -18,8 +18,7 @@ RUN pip install --upgrade 'pip>=10,<11'
 
 # Install SSH for Azure Management
 ENV SSH_PASSWD "root:Docker!"
-RUN apt-get install -y --no-install-recommends dialog cron \
-        && apt-get install -y --no-install-recommends openssh-server \
+RUN apt-get install -y --no-install-recommends openssh-server \
         && echo "$SSH_PASSWD" | chpasswd 
 
 
