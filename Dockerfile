@@ -45,17 +45,17 @@ RUN rm -rf "${KOBOCAT_SRC_DIR}"
 COPY . "${KOBOCAT_SRC_DIR}"
 
 # Prepare for execution.
-RUN mkdir -p /etc/service/uwsgi && \
-    cp "${KOBOCAT_SRC_DIR}/docker/run_uwsgi.bash" /etc/service/uwsgi/run && \
-    mkdir -p /etc/service/celery && \
-    cp "${KOBOCAT_SRC_DIR}/docker/run_celery.bash" /etc/service/celery/run && \
-    cp "${KOBOCAT_SRC_DIR}/docker/init.bash" /etc/my_init.d/10_init_kobocat.bash && \
-    cp "${KOBOCAT_SRC_DIR}/docker/sync_static.sh" /etc/my_init.d/11_sync_static.bash && \
-    mkdir -p "${KOBOCAT_SRC_DIR}/emails/" && \
-    chown -R "${UWSGI_USER}" "${KOBOCAT_SRC_DIR}/emails/" && \
-    mkdir -p "${BACKUPS_DIR}" && \
-    mkdir -p "${KOBOCAT_LOGS_DIR}" && \
-    chown -R "${UWSGI_USER}" "${KOBOCAT_LOGS_DIR}"
+#RUN mkdir -p /etc/service/uwsgi && \
+#    cp "${KOBOCAT_SRC_DIR}/docker/run_uwsgi.bash" /etc/service/uwsgi/run && \
+#    mkdir -p /etc/service/celery && \
+#    cp "${KOBOCAT_SRC_DIR}/docker/run_celery.bash" /etc/service/celery/run && \
+#    cp "${KOBOCAT_SRC_DIR}/docker/init.bash" /etc/my_init.d/10_init_kobocat.bash && \
+#    cp "${KOBOCAT_SRC_DIR}/docker/sync_static.sh" /etc/my_init.d/11_sync_static.bash && \
+#    mkdir -p "${KOBOCAT_SRC_DIR}/emails/" && \
+#    chown -R "${UWSGI_USER}" "${KOBOCAT_SRC_DIR}/emails/" && \
+#    mkdir -p "${BACKUPS_DIR}" && \
+#    mkdir -p "${KOBOCAT_LOGS_DIR}" && \
+#    chown -R "${UWSGI_USER}" "${KOBOCAT_LOGS_DIR}"
 
 RUN echo "db:*:*:kobo:kobo" > /root/.pgpass && \
     chmod 600 /root/.pgpass
